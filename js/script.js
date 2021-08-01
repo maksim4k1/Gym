@@ -47,12 +47,12 @@ function createTrainersItem(trainersItem){
     } else if(lastAgeNumber === 2 || lastAgeNumber === 3 || lastAgeNumber === 4){
         ageText = "года";
     }
-    const item = createElement("li", "trainers__item item");
-    const name = createElement("div", "trainers__name name", `${trainersItem.name}`);
-    const age = createElement("div", "trainers__info info", `<b>Возраст:</b> ${trainersItem.age} ${ageText}`);
-    const specialization = createElement("div", "trainers__info info", `<b>Специализация:</b> ${trainersItem.specialization}`);
-    const wage = createElement("div", "trainers__info info", `<b>Зарплата:</b> ${trainersItem.wage} сом`);
-    const buttons = createElement("div", "trainers__buttons buttons");
+    const item = createElement("tr", "tr");
+    const name = createElement("td", "td", `${trainersItem.name}`);
+    const age = createElement("td", "td", `${trainersItem.age} ${ageText}`);
+    const specialization = createElement("td", "td", `${trainersItem.specialization}`);
+    const wage = createElement("td", "td", `${trainersItem.wage} сом`);
+    const buttons = createElement("td", "td trainers__buttons buttons");
     const editItem = createElement("button", "trainers__edit edit", "Редактировать");
     const deleteItem = createElement("button", "trainers__delete delete", "Удалить");
 

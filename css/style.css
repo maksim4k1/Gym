@@ -21,7 +21,7 @@
 
 /* Content */
 .content{
-    padding: 50px 20px;
+    padding: 50px 20px 100px;
 }
 .main-title{
     font-size: 60px;
@@ -93,7 +93,7 @@
     margin: 0 5px 0 0;
 }
 .buttons{
-    margin: 10px 0 0;
+    gap: 10px;
     display: flex;
     justify-content: space-between;
 }
@@ -127,6 +127,22 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
+}
+.table {border-collapse: collapse;}
+.th{
+    width: 15%;
+    padding: 5px;
+}
+.th:first-child{
+    width: 200px;
+}
+.th:last-child{
+    width: 25%;
+}
+.td{
+    height: 100%;
+    padding: 10px;
+    border: 1px solid var(--main-grey)
 }
 
 /* Modal */
