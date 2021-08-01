@@ -17,25 +17,25 @@
     <!----------------------------------------------S T A R T   C O N T E N T-------------------------------------------->
     <main class="content container">
         <h1 class="main-title">GYM</h1>
-        <div class="inventory__sort sort">
-            <h5 class="inventory__sort-title sort-title">Отсортировать</h5>
-            <label class="inventory__sort-label sort-label">
-                По умолчанию
-                <input type="radio" name="sortInventory" value="default" class="sort-input inventory__sort-inventory-input" checked>
-            </label>
-            <label class="inventory__sort-label sort-label">
-                По алфавиту
-                <input type="radio" name="sortInventory" value="alphabet" class="sort-input inventory__sort-inventory-input">
-            </label>
-            <label class="inventory__sort-label sort-label">
-                По количеству
-                <input type="radio" name="sortInventory" value="quantity" class="sort-input inventory__sort-inventory-input">
-            </label>
-        </div>
         <div class="inventory">
             <div class="inventory__navigation navigation">
                 <h2 class="inventory__title title">Inventory</h2>
                 <button class="inventory__create-inventory button">Добавить</button>
+            </div>
+            <div class="inventory__sort sort">
+                <h5 class="inventory__sort-title sort-title">Отсортировать</h5>
+                <label class="inventory__sort-label sort-label">
+                    По умолчанию
+                    <input type="radio" name="sortInventory" value="default" class="sort-input inventory__sort-inventory-input" checked>
+                </label>
+                <label class="inventory__sort-label sort-label">
+                    По алфавиту
+                    <input type="radio" name="sortInventory" value="alphabet" class="sort-input inventory__sort-inventory-input">
+                </label>
+                <label class="inventory__sort-label sort-label">
+                    По количеству
+                    <input type="radio" name="sortInventory" value="quantity" class="sort-input inventory__sort-inventory-input">
+                </label>
             </div>
             <ul class="inventory__list list"></ul>
         </div>

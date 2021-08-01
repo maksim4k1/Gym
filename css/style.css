@@ -21,7 +21,7 @@
 
 /* Content */
 .content{
-    padding: 50px 0;
+    padding: 50px 20px;
 }
 .main-title{
     font-size: 60px;
@@ -49,11 +49,12 @@
     border-radius: 0 5px 5px 0;
 }
 .navigation{
-    padding: 0 30px;
     margin: 0 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-flow: wrap;
+    gap: 10px;
 }
 .title{
     font-size: 40px;
@@ -180,4 +181,14 @@
 }
 .modal__delete-button{
     background: var(--main-red);
+}
+
+/* Media */
+@media (max-width: 700px){
+    .main-title::after, .main-title::before{
+        content: none;
+    }
+    .item{
+        width: 100%;
+    }
 }

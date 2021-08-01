@@ -40,8 +40,7 @@ body{
 }
 
 /* Стили контейнеров */
-.container, .large_container{width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 20px;}
-.large_container{max-width: 1920px;}
+.container{width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 20px;}
 
 /* Переменные */
 :root{
