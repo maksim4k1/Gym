@@ -1,9 +1,12 @@
 const URL = "http://localhost:3030/gym";
 
-const inventoryList = document.querySelector(".inventory__list")
-const trainersList = document.querySelector(".trainers__list")
-const createInventoryButton = document.querySelector(".inventory__create-inventory")
-const createTrainersButton = document.querySelector(".trainers__create-trainers")
+let inventoryItems;
+let trainersItems;
+const inventoryList = document.querySelector(".inventory__list");
+const trainersList = document.querySelector(".trainers__list");
+const createInventoryButton = document.querySelector(".inventory__create-inventory");
+const createTrainersButton = document.querySelector(".trainers__create-trainers");
+const sortItems = document.querySelectorAll(".sort-label");
 const modal = document.querySelector(".modal");
 const modalForm = document.querySelector(".modal__form");
 
@@ -71,6 +74,18 @@ function createTrainersItem(trainersItem){
     return item;
 }
 
+sortItems.forEach(item => {
+    let itemInput = item.childNodes[1];
+    if(itemInput.name === "sortTrainers"){
+        item.addEventListener("click", () => {
+            getData("trainers");
+        });
+    } else if(itemInput.name === "sortInventory"){
+        item.addEventListener("click", () => {
+            getData("inventory");
+        });
+    }
+});
 function renderItems(list, items){
     list.innerHTML = "";
     list.append(...items);
@@ -354,13 +369,40 @@ function getData(route){
     fetch(`${URL}/${route}`)
         .then(response => response.json())
         .then(data => {
-            let items;
             if(route === "inventory"){
-                items = data.map(item => createInventoryItem(item));
-                renderItems(inventoryList, items);
+                let sortInventoryType = document.querySelector(".inventory__sort-inventory-input:checked").value;
+                if(sortInventoryType === "alphabet"){
+                    data.sort(function (a, b) {
+                        if (a.name > b.name) return 1;
+                        else if (a.name < b.name) return -1;
+                        else return 0;
+                    });
+                } else if(sortInventoryType === "quantity"){
+                    data.sort(function (a, b) {
+                        if (a.quantity > b.quantity) return -1;
+                        else if (a.quantity < b.quantity) return 1;
+                        else return 0;
+                    });
+                }
+                inventoryItems = data.map(item => createInventoryItem(item));
+                renderItems(inventoryList, inventoryItems);
             } else if(route === "trainers"){
-                items = data.map(item => createTrainersItem(item));
-                renderItems(trainersList, items);
+                let sortTrainersType = document.querySelector(".trainers__sort-trainers-input:checked").value;
+                if(sortTrainersType === "alphabet"){
+                    data.sort(function (a, b) {
+                        if (a.name > b.name) return 1;
+                        else if (a.name < b.name) return -1;
+                        else return 0;
+                    });
+                } else if(sortTrainersType === "wage"){
+                    data.sort(function (a, b) {
+                        if (a.wage > b.wage) return -1;
+                        else if (a.wage < b.wage) return 1;
+                        else return 0;
+                    });
+                }
+                trainersItems = data.map(item => createTrainersItem(item));
+                renderItems(trainersList, trainersItems);
             }
         });
 }
