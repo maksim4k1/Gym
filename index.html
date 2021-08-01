@@ -1,25 +1,45 @@
 <!DOCTYPE html>
-<html lang='ru'>
+<html lang="ru">
 <head>
     <title>Lesson</title>
-    <meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ====================S C R I P T===================== -->
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <!-- ====================F O N T==================== -->
-    <link rel='preconnect' href='https://fonts.gstatic.com' />
-    <link href='https://fonts.googleapis.com/css2?family=Montserrat&display=swap' rel='stylesheet' />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <!-- ====================S T Y L E==================== -->
-    <link href='css/custom.css' rel='stylesheet' />
-    <link href='css/style.css' rel='stylesheet' />
+    <link href="css/custom.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!----------------------------------------------S T A R T   C O N T E N T-------------------------------------------->
-    <main class='content'>
-            <p>text</p>
+    <main class="content container">
+        <h1 class="main-title">GYM</h1>
+        <div class="inventory">
+            <div class="inventory__navigation navigation">
+                <h2 class="inventory__title title">Inventory</h2>
+                <button class="inventory__create-inventory button">Добавить</button>
+            </div>
+            <ul class="inventory__list list"></ul>
+        </div>
+        <div class="trainers">
+            <div class="trainers__navigation navigation">
+                <h2 class="trainers__title title">Trainers</h2>
+                <button class="trainers__create-trainers button">Добавить</button>
+            </div>
+            <ul class="trainers__list list"></ul>
+        </div>
+        <div class="modal">
+            <form class="modal__form">
+                <h6 class="modal__title">Добавить</h6>
+                <button class="modal__button button">Добавить</button>
+            </form>
+        </div>
     </main>
     <!----------------------------------------------E N D   C O N T E N T--------------------------------------------->
     <!-- ====================S C R I P T===================== -->
-    <script></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
