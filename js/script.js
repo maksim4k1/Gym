@@ -115,6 +115,7 @@ let modal__inputIsInGoodCondition;
 let modal__inputQuantity;
 let modal__inputWeight;
 let modal__inputProducedBy;
+let modal__inputImage;
 let modal__inputAge;
 let modal__inputSpecialization;
 let modal__inputWage;
@@ -138,6 +139,8 @@ async function openModal(form, values){
         const inputWeight = createElement("input", "modal__input modal__input-weight");
         const labelProducedBy = createElement("label", "modal__label", "Введите производителя");
         const inputProducedBy = createElement("input", "modal__input modal__input-producedBy");
+        const labelImageLink = createElement("label", "modal__label", "Введите ссылку на фото");
+        const inputImageLink = createElement("input", "modal__input modal__input-image");
 
         inputIsInGoodContion.setAttribute("type", "checkbox");
         inputQuantity.setAttribute("type", "number");
@@ -147,8 +150,9 @@ async function openModal(form, values){
         labelQuantity.append(inputQuantity);
         labelWeight.append(inputWeight);
         labelProducedBy.append(inputProducedBy);
+        labelImageLink.append(inputImageLink);
 
-        modalForm.append(title, labelName, labelIsInGoodContion, labelQuantity, labelWeight, labelProducedBy, errorBlock, button);
+        modalForm.append(title, labelName, labelIsInGoodContion, labelQuantity, labelWeight, labelProducedBy, labelImageLink, errorBlock, button);
 
         modalButton = document.querySelector(".modal__button");
         modal__inputName = document.querySelector(".modal__input-name");
@@ -156,6 +160,7 @@ async function openModal(form, values){
         modal__inputQuantity = document.querySelector(".modal__input-quantity");
         modal__inputWeight = document.querySelector(".modal__input-weight");
         modal__inputProducedBy = document.querySelector(".modal__input-producedBy");
+        modal__inputImage = document.querySelector(".modal__input-image");
         modalButton.addEventListener("click", () => {
             validateForm();
             if(errorBlock.textContent === ""){
@@ -164,7 +169,8 @@ async function openModal(form, values){
                     isInGoodContion: inputIsInGoodContion.checked,
                     quantity: inputQuantity.value,
                     weight: inputWeight.value,
-                    producedBy: inputProducedBy.value
+                    producedBy: inputProducedBy.value,
+                    image: inputImageLink.value
                 });
                 closeModal();
             }
@@ -176,8 +182,10 @@ async function openModal(form, values){
         const quantity = createElement("div", "modal__info", `<b>Количество:</b> ${item.quantity}`);
         const weight = createElement("div", "modal__info", `<b>Вес:</b> ${item.weight}`);
         const producedBy = createElement("div", "modal__info", `<b>Производитель:</b> ${item.producedBy}`);
+        const image = createElement("img", "modal__image");
+        image.setAttribute("src", item.image);
         
-        modalForm.append(title, isInGoodContion, quantity, weight, producedBy);
+        modalForm.append(title, isInGoodContion, quantity, weight, producedBy, image);
     } else if(form === "deleteInventoryItem"){
         const title = createElement("h6", "modal__title", "Вы уверены что хотите удалить этот спорт товар?");
         const errorBlock = createElement("button", "modal__error");
@@ -205,6 +213,8 @@ async function openModal(form, values){
         const inputWeight = createElement("input", "modal__input modal__input-weight");
         const labelProducedBy = createElement("label", "modal__label", "Введите производителя");
         const inputProducedBy = createElement("input", "modal__input modal__input-producedBy");
+        const labelImageLink = createElement("label", "modal__label", "Введите ссылку на фото");
+        const inputImageLink = createElement("input", "modal__input modal__input-image");
 
         inputIsInGoodContion.setAttribute("type", "checkbox");
         inputQuantity.setAttribute("type", "number");
@@ -217,13 +227,15 @@ async function openModal(form, values){
         inputQuantity.setAttribute("value", item.quantity);
         inputWeight.setAttribute("value", item.weight);
         inputProducedBy.setAttribute("value", item.producedBy);
+        inputImageLink.setAttribute("value", item.image);
         labelName.append(inputName);
         labelIsInGoodContion.append(inputIsInGoodContion);
         labelQuantity.append(inputQuantity);
         labelWeight.append(inputWeight);
         labelProducedBy.append(inputProducedBy);
+        labelImageLink.append(inputImageLink);
 
-        modalForm.append(title, labelName, labelIsInGoodContion, labelQuantity, labelWeight, labelProducedBy, errorBlock, button);
+        modalForm.append(title, labelName, labelIsInGoodContion, labelQuantity, labelWeight, labelProducedBy, labelImageLink, errorBlock, button);
 
         modalButton = document.querySelector(".modal__button");
         modal__inputIsInGoodCondition = document.querySelector(".modal__input-isInGoodCondition");
@@ -231,7 +243,14 @@ async function openModal(form, values){
         modalButton.addEventListener("click", () => {
             validateForm();
             if(errorBlock.textContent === ""){
-                updateInventoryItem({name: inputName.value, isInGoodContion: inputIsInGoodContion.checked, quantity: inputQuantity.value, weight: inputWeight.value, producedBy: inputProducedBy.value}, item.id);
+                updateInventoryItem({
+                    name: inputName.value,
+                    isInGoodContion: inputIsInGoodContion.checked,
+                    quantity: inputQuantity.value,
+                    weight: inputWeight.value,
+                    producedBy: inputProducedBy.value,
+                    image: inputImageLink.value
+                }, item.id);
                 closeModal();
             }
         });
@@ -247,6 +266,8 @@ async function openModal(form, values){
         const inputSpecialization = createElement("input", "modal__input modal__input-specialization");
         const labelWage = createElement("label", "modal__label", "Введите зарплату тренера");
         const inputWage = createElement("input", "modal__input modal__input-wage");
+        const labelImageLink = createElement("label", "modal__label", "Введите ссылку на фото");
+        const inputImageLink = createElement("input", "modal__input modal__input-image");
 
         inputAge.setAttribute("type", "number");
         inputWage.setAttribute("type", "number");
@@ -254,14 +275,16 @@ async function openModal(form, values){
         labelAge.append(inputAge);
         labelSpecialization.append(inputSpecialization);
         labelWage.append(inputWage);
+        labelImageLink.append(inputImageLink);
 
-        modalForm.append(title, labelName, labelAge, labelSpecialization, labelWage, errorBlock, button);
+        modalForm.append(title, labelName, labelAge, labelSpecialization, labelWage, labelImageLink, errorBlock, button);
 
         modalButton = document.querySelector(".modal__button");
         modal__inputName = document.querySelector(".modal__input-name");
         modal__inputAge = document.querySelector(".modal__input-age");
         modal__inputSpecialization = document.querySelector(".modal__input-specialization");
         modal__inputWage = document.querySelector(".modal__input-wage");
+        modal__inputImage = document.querySelector(".modal__input-image");
         modalButton.addEventListener("click", () => {
             validateForm();
             if(errorBlock.textContent === ""){
@@ -269,7 +292,8 @@ async function openModal(form, values){
                     name: inputName.value,
                     age: inputAge.value,
                     specialization: inputSpecialization.value,
-                    wage: inputWage.value
+                    wage: inputWage.value,
+                    image: inputImageLink.value
                 });
                 closeModal();
             }
@@ -280,8 +304,10 @@ async function openModal(form, values){
         const age = createElement("div", "modal__info", `<b>Возраст:</b> ${item.age}`);
         const specialization = createElement("div", "modal__info", `<b>Специализация:</b> ${item.specialization}`);
         const wage = createElement("div", "modal__info", `<b>Зарплата:</b> ${item.wage}`);
+        const image = createElement("img", "modal__image");
+        image.setAttribute("src", item.image)
         
-        modalForm.append(title, age, specialization, wage);
+        modalForm.append(title, age, specialization, wage, image);
     } else if(form === "deleteTrainersItem"){
         const title = createElement("h6", "modal__title", "Вы уверены что хотите удалить этого тренера?");
         const errorBlock = createElement("button", "modal__error");
@@ -307,6 +333,8 @@ async function openModal(form, values){
         const inputSpecialization = createElement("input", "modal__input modal__input-specialization");
         const labelWage = createElement("label", "modal__label", "Введите зарплату");
         const inputWage = createElement("input", "modal__input modal__input-wage");
+        const labelImageLink = createElement("label", "modal__label", "Введите ссылку на фото");
+        const inputImageLink = createElement("input", "modal__input modal__input-image");
 
         inputName.setAttribute("value", item.name);
         inputAge.setAttribute("type", "number");
@@ -314,22 +342,30 @@ async function openModal(form, values){
         inputSpecialization.setAttribute("value", item.specialization);
         inputWage.setAttribute("value", item.wage);
         inputWage.setAttribute("type", "number");
+        inputImageLink.setAttribute("value", item.image);
         labelName.append(inputName);
         labelAge.append(inputAge);
         labelSpecialization.append(inputSpecialization);
         labelWage.append(inputWage);
+        labelImageLink.append(inputImageLink);
 
-        modalForm.append(title, labelName, labelAge, labelSpecialization, labelWage, errorBlock, button);
+        modalForm.append(title, labelName, labelAge, labelSpecialization, labelWage, labelImageLink, errorBlock, button);
 
         modalButton = document.querySelector(".modal__button");
         modal__inputName = document.querySelector(".modal__input-name");
         modal__inputAge = document.querySelector(".modal__input-age");
         modal__inputSpecialization = document.querySelector(".modal__input-specialization");
         modal__inputWage = document.querySelector(".modal__input-wage");
+        modal__inputImage = document.querySelector(".modal__input-image");
         modalButton.addEventListener("click", () => {
             validateForm();
             if(errorBlock.textContent === ""){
-                updateTrainersItem({name: inputName.value, age: inputAge.value, specialization: inputSpecialization.value, wage: inputWage.value}, item.id);
+                updateTrainersItem({name: inputName.value,
+                    age: inputAge.value,
+                    specialization: inputSpecialization.value,
+                    wage: inputWage.value,
+                    image: inputImageLink.value
+                }, item.id);
                 closeModal();
             }
         });
@@ -419,7 +455,8 @@ async function createInventoryElement(item){
         isInGoodContion: item.isInGoodContion,
         quantity: Number(item.quantity),
         weight: Number(item.weight),
-        producedBy: item.producedBy
+        producedBy: item.producedBy,
+        image: item.image
     }
     await fetch(`${URL}/inventory/create`, {
         method: "POST",
@@ -436,7 +473,8 @@ async function createTrainersElement(item){
         name: item.name,
         age: Number(item.age),
         specialization: item.specialization,
-        wage: Number(item.wage)
+        wage: Number(item.wage),
+        image: item.image
     }
     await fetch(`${URL}/trainers/add`, {
         method: "POST",
@@ -454,7 +492,8 @@ async function updateInventoryItem(values, id){
         isInGoodContion: values.isInGoodContion,
         quantity: Number(values.quantity),
         weight: Number(values.weight),
-        producedBy: values.producedBy
+        producedBy: values.producedBy,
+        image: values.image
     }
     await fetch(`${URL}/inventory/update/${id}`, {
         method: "PUT",
@@ -471,7 +510,8 @@ async function updateTrainersItem(values, id){
         name: values.name,
         age: Number(values.age),
         specialization: values.specialization,
-        wage: Number(values.wage)
+        wage: Number(values.wage),
+        image: values.image
     }
     await fetch(`${URL}/trainers/update/${id}`, {
         method: "PUT",
